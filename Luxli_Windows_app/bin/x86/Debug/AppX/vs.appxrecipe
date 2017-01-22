@@ -28,13 +28,13 @@
     <AppXManifest Include="C:\William\GIT\Luxli_windows_app_github\Luxli_Windows_app\bin\x86\Debug\Core\AppxManifest.xml">
       <PackagePath>AppxManifest.xml</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2017-01-22T15:48:53.530</Modified>
+      <Modified>2017-01-22T15:55:43.736</Modified>
     </AppXManifest>
   </ItemGroup>
   <ItemGroup>
     <AppxPackagedFile Include="C:\William\GIT\Luxli_windows_app_github\Luxli_Windows_app\bin\x86\Debug\Luxli_Windows_app.exe">
       <PackagePath>entrypoint\Luxli_Windows_app.exe</PackagePath>
-      <Modified>2017-01-22T15:48:52.643</Modified>
+      <Modified>2017-01-22T15:55:43.287</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\willivr\.nuget\packages\Microsoft.CSharp\4.0.0\lib\netcore50\Microsoft.CSharp.dll">
       <PackagePath>Microsoft.CSharp.dll</PackagePath>
@@ -497,11 +497,11 @@
     <AppxPackagedFile Include="C:\William\GIT\Luxli_windows_app_github\Luxli_Windows_app\bin\x86\Debug\resources.pri">
       <PackagePath>resources.pri</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2017-01-22T15:48:53.362</Modified>
+      <Modified>2017-01-22T15:55:43.615</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\William\GIT\Luxli_windows_app_github\Luxli_Windows_app\bin\x86\Debug\Core\Luxli_Windows_app.exe">
       <PackagePath>Luxli_Windows_app.exe</PackagePath>
-      <Modified>2017-01-22T15:48:53.526</Modified>
+      <Modified>2017-01-22T15:55:43.733</Modified>
     </AppxPackagedFile>
   </ItemGroup>
   <ItemGroup>

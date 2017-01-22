@@ -42,7 +42,12 @@ namespace Luxli_Windows_app
 		private List<luxli_ble_device> connected_Luxlis = new List<luxli_ble_device>();
 
 
-		public void StartBleWatcher()
+		public ble_handler()
+		{
+			StartBleWatcher();
+		}
+
+		private void StartBleWatcher()
 		{
 			string selector = "System.Devices.Aep.ProtocolId:=\"{bb7bb05e-5972-42b5-94fc-76eaa7084d49}\"";
 			// Kind is specified in the selector info
@@ -100,6 +105,15 @@ namespace Luxli_Windows_app
 				}
 			}
 		}
+
+		public async void send_ble_packet(IBuffer packet)
+		{
+
+		}
+
+
+
+
 	}
 		// private pair, unpair, connect, disconnect
 }

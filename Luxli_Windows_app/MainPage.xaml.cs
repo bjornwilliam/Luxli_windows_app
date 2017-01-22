@@ -28,6 +28,8 @@ namespace Luxli_Windows_app
 	{
 		public static MainPage Current;
 
+		private ble_handler Luxli_ble_handler;
+
 		public MainPage()
 		{
 			this.InitializeComponent();
@@ -35,6 +37,9 @@ namespace Luxli_Windows_app
 			// This is a static public property that allows downstream pages to get a handle to the MainPage instance
 			// in order to call methods that are in this class.
 			Current = this;
+
+			Luxli_ble_handler = new ble_handler();
+
 		}
 
 		protected override void OnNavigatedTo(NavigationEventArgs e)
@@ -65,7 +70,7 @@ namespace Luxli_Windows_app
 			Scenario s = scenarioListBox.SelectedItem as Scenario;
 			if (s != null)
 			{
-				ScenarioFrame.Navigate(s.ClassType);
+				ScenarioFrame.Navigate(s.ClassType, Luxli_ble_handler);
 				if (Window.Current.Bounds.Width < 640)
 				{
 					//Splitter.IsPaneOpen = false;
