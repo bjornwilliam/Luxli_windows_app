@@ -28,7 +28,7 @@ namespace Luxli_Windows_app
 	{
 		public static MainPage Current;
 
-		private ble_handler Luxli_ble_handler;
+		ble_handler Luxli_ble_handler;
 
 		public MainPage()
 		{

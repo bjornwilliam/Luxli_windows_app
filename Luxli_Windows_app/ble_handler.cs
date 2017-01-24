@@ -27,21 +27,23 @@ namespace Luxli_Windows_app
 {
 	class ble_handler
 	{
-		private const string luxli_ble_name = "Luxli Lamp";
+		private const string luxli_ble_name = "Rift Labs Kick";
 		public static readonly string ServiceUUID = "6e400001-b5a3-f393-e0a9-e50e24dcca9e";
 		public static readonly string txCharacteristicUUID = "6e400002-b5a3-f393-e0a9-e50e24dcca9e";
 		public static readonly string rxCharacteristicUUID = "6e400003-b5a3-f393-e0a9-e50e24dcca9e";
 
 		private DeviceWatcher BLE_deviceWatcher = null; // Used to find BLE devices
 		private TypedEventHandler<DeviceWatcher, DeviceInformation> BLE_DeviceWatcher_EventHandler_DeviceAdded = null;
-		private TypedEventHandler<DeviceWatcher, DeviceInformation> BLE_DeviceWatcher_EventHandler_DeviceUpdated = null;
+		private TypedEventHandler<DeviceWatcher, DeviceInformationUpdate> BLE_DeviceWatcher_EventHandler_DeviceUpdated = null;
 		private TypedEventHandler<DeviceWatcher, DeviceInformation> BLE_DeviceWatcher_EventHandler_DeviceRemoved = null;
 
 
 		private BluetoothLEDevice luxli_ble_device = null;
-		private List<luxli_ble_device> connected_Luxlis = new List<luxli_ble_device>();
+		public List<luxli_ble_device> connected_Luxlis = new List<luxli_ble_device>();
+		public List<DeviceInformation> discovered_luxlis = new List<DeviceInformation>();
 
-
+		
+				
 		public ble_handler()
 		{
 			StartBleWatcher();
@@ -58,27 +60,50 @@ namespace Luxli_Windows_app
 
 			// Hook up handlers to the device watcher which will handle updates / and new discoveries
 
-			BLE_DeviceWatcher_EventHandler_DeviceAdded = new TypedEventHandler<DeviceWatcher, DeviceInformation>(async (watcher, deviceInfo) =>
+			BLE_DeviceWatcher_EventHandler_DeviceAdded = new TypedEventHandler<DeviceWatcher, DeviceInformation>(async(watcher, deviceInfo) =>
 			{
 				// DeviceInformation contains :
 				//
-				if (deviceInfo.Id == luxli_ble_name)
+				if (deviceInfo.Name == luxli_ble_name)
 				{
-					//if its a luxli device, unpair, pair and connect 
-					await deviceInfo.Pairing.UnpairAsync();
-					await deviceInfo.Pairing.PairAsync();
+					if (!discovered_luxlis.Contains(deviceInfo)) {
+						discovered_luxlis.Add(deviceInfo);
+					}
+					//if its a luxli device, unpair, pair and connect 					
+
+					DeviceUnpairingResult res =  await deviceInfo.Pairing.UnpairAsync();
+					DevicePairingResult result = await deviceInfo.Pairing.PairAsync();
 					connectToLuxli(deviceInfo);
+					if ( (result.Status.Equals(DevicePairingResultStatus.Paired) || result.Status.Equals(DevicePairingResultStatus.AlreadyPaired)) && deviceInfo.IsEnabled )
+					{
+						connectToLuxli(deviceInfo);
+					}
+
 				}
 			});
 			BLE_deviceWatcher.Added += BLE_DeviceWatcher_EventHandler_DeviceAdded;
+
+			BLE_DeviceWatcher_EventHandler_DeviceUpdated = new TypedEventHandler<DeviceWatcher, DeviceInformationUpdate>((watcher, deviceInfoUpdate) =>
+			{
+				foreach (DeviceInformation luxli_deviceInfo in discovered_luxlis)
+				{
+					if (luxli_deviceInfo.Id == deviceInfoUpdate.Id)
+					{
+						luxli_deviceInfo.Update(deviceInfoUpdate);
+					}
+				}
+			});
+			BLE_deviceWatcher.Updated += BLE_DeviceWatcher_EventHandler_DeviceUpdated;
 
 			BLE_deviceWatcher.Start();
 		}
 		
 		private async void connectToLuxli(DeviceInformation deviceInfo)
 		{
+			BluetoothLEDevice luxli_ble_device_1 = null;
 			try
 			{
+				luxli_ble_device_1 = await BluetoothLEDevice.FromIdAsync(deviceInfo.Id);
 				luxli_ble_device = await BluetoothLEDevice.FromIdAsync(deviceInfo.Id);
 			}
 			catch (Exception ex) when ((uint)ex.HResult == 0x800710df)
@@ -106,14 +131,33 @@ namespace Luxli_Windows_app
 			}
 		}
 
-		public async void send_ble_packet(IBuffer packet)
+		public async void send_ble_luxli_packet(MasterPacket packet)
 		{
+			var headerBytes = new byte[] {// data package has room for 11 bytes
+						(byte)'R',
+						(byte)'L',
+						0x00, // group
+						0x00, // address 1
+						0x00, // address 2
+						0x00, // address 3
+						0x00, // length 1
+						(byte)(packet.Data.Length +1),
+						(byte)packet.CommandData
+					};
+			var allBytes = new List<byte>(headerBytes);
 
+			if (packet.Data.Length > 0)
+				allBytes.AddRange(packet.Data);
+
+			var data = allBytes.ToArray();
+			var completePacket = data.AsBuffer();
+
+			//IEnumerable<byte> completePacket = (headerBytes.Concat(packet.Data));
+			
+			foreach (var luxli in connected_Luxlis.Where(k => k.ble_transmit != null)) {
+				GattCommunicationStatus status = await luxli.ble_transmit.WriteValueAsync(completePacket);		
+			};
 		}
-
-
-
-
 	}
 		// private pair, unpair, connect, disconnect
 }

@@ -16,7 +16,7 @@
     <PackageRegistrationPath>
     </PackageRegistrationPath>
     <RemoveNonLayoutFiles>true</RemoveNonLayoutFiles>
-    <RegisteredManifestChecksum>AE6FAD1D3B4192D438C3FE0F86AD79088F2AFFC79C50CFA4EF3C4E4B522BA31C</RegisteredManifestChecksum>
+    <RegisteredManifestChecksum>1CA6C4D12B1006A5D79C022E4DC87DFD984E51806E7DB8EE5E162FB541D05C6F</RegisteredManifestChecksum>
     <RegisteredPackageMoniker>57a4e08b-48a2-4c69-b65f-ecef7f3bd09c_1.0.0.0_x86__b42n88pvcspky</RegisteredPackageMoniker>
     <RegisteredUserModeAppID>57a4e08b-48a2-4c69-b65f-ecef7f3bd09c_b42n88pvcspky!App</RegisteredUserModeAppID>
     <RegisteredPackageID>57a4e08b-48a2-4c69-b65f-ecef7f3bd09c</RegisteredPackageID>
@@ -28,13 +28,13 @@
     <AppXManifest Include="C:\William\GIT\Luxli_windows_app_github\Luxli_Windows_app\bin\x86\Debug\Core\AppxManifest.xml">
       <PackagePath>AppxManifest.xml</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2017-01-22T15:55:43.736</Modified>
+      <Modified>2017-01-24T22:32:07.614</Modified>
     </AppXManifest>
   </ItemGroup>
   <ItemGroup>
     <AppxPackagedFile Include="C:\William\GIT\Luxli_windows_app_github\Luxli_Windows_app\bin\x86\Debug\Luxli_Windows_app.exe">
       <PackagePath>entrypoint\Luxli_Windows_app.exe</PackagePath>
-      <Modified>2017-01-22T15:55:43.287</Modified>
+      <Modified>2017-01-24T22:32:07.429</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\willivr\.nuget\packages\Microsoft.CSharp\4.0.0\lib\netcore50\Microsoft.CSharp.dll">
       <PackagePath>Microsoft.CSharp.dll</PackagePath>
@@ -488,7 +488,7 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\William\GIT\Luxli_windows_app_github\Luxli_Windows_app\bin\x86\Debug\Luxli_Windows_app.xr.xml">
       <PackagePath>Luxli_Windows_app.xr.xml</PackagePath>
-      <Modified>2017-01-22T15:38:48.678</Modified>
+      <Modified>2017-01-24T19:19:54.439</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Program Files %28x86%29\Windows Kits\10\UnionMetadata\Windows.winmd">
       <PackagePath>WinMetadata\Windows.winmd</PackagePath>
@@ -497,11 +497,11 @@
     <AppxPackagedFile Include="C:\William\GIT\Luxli_windows_app_github\Luxli_Windows_app\bin\x86\Debug\resources.pri">
       <PackagePath>resources.pri</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2017-01-22T15:55:43.615</Modified>
+      <Modified>2017-01-24T22:29:04.814</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\William\GIT\Luxli_windows_app_github\Luxli_Windows_app\bin\x86\Debug\Core\Luxli_Windows_app.exe">
       <PackagePath>Luxli_Windows_app.exe</PackagePath>
-      <Modified>2017-01-22T15:55:43.733</Modified>
+      <Modified>2017-01-24T22:32:07.611</Modified>
     </AppxPackagedFile>
   </ItemGroup>
   <ItemGroup>

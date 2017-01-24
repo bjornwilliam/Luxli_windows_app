@@ -7,7 +7,16 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Margin="10,0,-33,0" RenderTransformOrigin="0.448,0.5">
+        <Slider x:Name="redLedSlider" HorizontalAlignment="Left" Width="100" Maximum="4096" Margin="134,22,0,584" ValueChanged="redLedSlider_ValueChanged"/>
+        <Slider x:Name="greenLedSlider" HorizontalAlignment="Left" Margin="134,79,0,0" Maximum="4096" VerticalAlignment="Top" Width="100" RenderTransformOrigin="0.5,0.5" ValueChanged="greenLedSlider_ValueChanged"/>
+        <Slider x:Name="blueLedSlider" HorizontalAlignment="Left" Margin="134,147,0,0" Maximum="4096" VerticalAlignment="Top" Width="100" ValueChanged="blueLedSlider_ValueChanged"/>
+        <Slider x:Name="wwLedSlider" HorizontalAlignment="Left" Margin="134,219,0,0" Maximum="4096"  VerticalAlignment="Top" Width="100" ValueChanged="wwLedSlider_ValueChanged"/>
+        <Slider x:Name="cwLedSlider" HorizontalAlignment="Left" Margin="134,288,0,0" Maximum="4096" VerticalAlignment="Top" Width="100" ValueChanged="cwLedSlider_ValueChanged"/>
+        <TextBox x:Name="textBox" HorizontalAlignment="Left" Margin="64,24,0,0" TextWrapping="Wrap" Text="R" VerticalAlignment="Top" Height="10" Width="34"/>
+        <TextBox x:Name="textBox_Copy" HorizontalAlignment="Left" Margin="64,81,0,0" TextWrapping="Wrap" Text="G" VerticalAlignment="Top" Height="10" Width="34"/>
+        <TextBox x:Name="textBox_Copy1" HorizontalAlignment="Left" Margin="64,154,0,0" TextWrapping="Wrap" Text="B" VerticalAlignment="Top" Height="10" Width="34"/>
+        <TextBox x:Name="textBox_Copy2" HorizontalAlignment="Left" Margin="64,226,0,0" TextWrapping="Wrap" Text="WW" VerticalAlignment="Top" Height="10" Width="34"/>
+        <TextBox x:Name="textBox_Copy3" HorizontalAlignment="Left" Margin="64,295,0,0" TextWrapping="Wrap" Text="CW" VerticalAlignment="Top" Height="10" Width="34"/>
     </Grid>
 </Page>
