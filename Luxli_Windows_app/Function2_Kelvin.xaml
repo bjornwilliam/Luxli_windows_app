@@ -8,6 +8,15 @@
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <TextBox x:Name="interval_s_TextBox" HorizontalAlignment="Left" TextWrapping="Wrap" Text="3" VerticalAlignment="Top" TextChanged="interval_s_TextBox_TextChanged"
+                 Header="Interval in seconds"/>
+        <Button x:Name="startStopButton"  Content="Start" HorizontalAlignment="Left" Margin="97,245,0,0" VerticalAlignment="Top" Click="startStopButton_Click"></Button>
+        <TextBox x:Name="startValue_TextBox" Header ="Start Value" HorizontalAlignment="Left" Margin="128,0,0,0" TextWrapping="Wrap" Text="3000" VerticalAlignment="Top" TextChanged="startValue_TextBox_TextChanged"/>
+        <TextBox x:Name="stopValue_TextBox" Header ="Stop Value" HorizontalAlignment="Left" Margin="204,0,0,0" TextWrapping="Wrap" Text="10000" VerticalAlignment="Top" TextChanged="stopValue_TextBox_TextChanged"/>
+        <TextBox x:Name="incrementSize_TextBox" Header ="Increment Size" HorizontalAlignment="Left" Margin="0,65,0,0" TextWrapping="Wrap" Text="100" VerticalAlignment="Top" TextChanged="incrementSize_TextBox_TextChanged"/>
+        <TextBox x:Name="brightness_TextBox" Header ="Brightness" HorizontalAlignment="Left" Margin="165,65,0,0" TextWrapping="Wrap" Text="10" VerticalAlignment="Top" TextChanged="brightness_TextBox_TextChanged"/>
+
+
 
     </Grid>
 </Page>

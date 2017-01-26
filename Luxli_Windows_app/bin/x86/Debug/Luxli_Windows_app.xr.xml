@@ -40,6 +40,7 @@
       <RootProperty Name="Margin" />
       <RootProperty Name="VerticalAlignment" />
       <RootProperty Name="RenderTransformOrigin" />
+      <RootProperty Name="Minimum" />
       <RootEvent Name="ValueChanged" />
     </RootType>
     <RootType FullName="Windows.UI.Xaml.Controls.TextBox">
@@ -50,8 +51,17 @@
       <RootProperty Name="VerticalAlignment" />
       <RootProperty Name="Height" />
       <RootProperty Name="Width" />
+      <RootProperty Name="Header" />
+      <RootEvent Name="TextChanged" />
     </RootType>
     <RootType FullName="Luxli_Windows_app.Function1_ControlLEDS" />
+    <RootType FullName="Windows.UI.Xaml.Controls.Button">
+      <RootProperty Name="Content" />
+      <RootProperty Name="HorizontalAlignment" />
+      <RootProperty Name="Margin" />
+      <RootProperty Name="VerticalAlignment" />
+      <RootEvent Name="Click" />
+    </RootType>
     <RootType FullName="Luxli_Windows_app.Function2_Kelvin" />
     <RootType FullName="Luxli_Windows_app.ScenarioBindingConverter" />
     <RootType FullName="Windows.UI.Xaml.Controls.SplitView">

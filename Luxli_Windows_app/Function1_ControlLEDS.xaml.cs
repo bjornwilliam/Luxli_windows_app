@@ -32,6 +32,12 @@ namespace Luxli_Windows_app
 		private UInt16 B_SliderVal = 0;
 		private UInt16 WW_SliderVal = 0;
 		private UInt16 CW_SliderVal = 0;
+		private byte _brightnessSliderVal;
+		public byte BrightnessSliderVal
+		{
+			get { return _brightnessSliderVal; }
+			set { _brightnessSliderVal = (byte)(byte.MaxValue - value); }
+		}
 
 		public Function1_ControlLEDS()
 		{
@@ -41,7 +47,6 @@ namespace Luxli_Windows_app
 		protected override void OnNavigatedTo(NavigationEventArgs e)
 		{
 			_ble_handler = e.Parameter as ble_handler;
-
 		}
 		private void redLedSlider_ValueChanged(object sender, RangeBaseValueChangedEventArgs e)
 		{
@@ -77,5 +82,15 @@ namespace Luxli_Windows_app
 
 		}
 
+		private void brightnessSlider_ValueChanged(object sender, RangeBaseValueChangedEventArgs e)
+		{
+			BrightnessSliderVal = (byte)e.NewValue;
+			var brightness_data = new byte[]
+			{
+				BrightnessSliderVal
+			};
+			var packet = new MasterPacket(MasterCommand.SetEV2, brightness_data);
+			_ble_handler.send_ble_luxli_packet(packet);
+		}
 	}
 }

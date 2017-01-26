@@ -18,5 +18,7 @@
         <TextBox x:Name="textBox_Copy1" HorizontalAlignment="Left" Margin="64,154,0,0" TextWrapping="Wrap" Text="B" VerticalAlignment="Top" Height="10" Width="34"/>
         <TextBox x:Name="textBox_Copy2" HorizontalAlignment="Left" Margin="64,226,0,0" TextWrapping="Wrap" Text="WW" VerticalAlignment="Top" Height="10" Width="34"/>
         <TextBox x:Name="textBox_Copy3" HorizontalAlignment="Left" Margin="64,295,0,0" TextWrapping="Wrap" Text="CW" VerticalAlignment="Top" Height="10" Width="34"/>
+        <Slider x:Name="brightnessSlider" HorizontalAlignment="Left" Margin="134,354,0,0" Maximum="255" Minimum="0" VerticalAlignment="Top" Width="100" ValueChanged="brightnessSlider_ValueChanged"/>
+        <TextBox x:Name="textBox_Copy4" HorizontalAlignment="Left" Margin="64,361,0,0" TextWrapping="Wrap" Text="Brightness"  VerticalAlignment="Top" Height="10" Width="34"/>
     </Grid>
 </Page>

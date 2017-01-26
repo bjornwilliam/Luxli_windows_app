@@ -73,12 +73,11 @@ namespace Luxli_Windows_app
 
 					DeviceUnpairingResult res =  await deviceInfo.Pairing.UnpairAsync();
 					DevicePairingResult result = await deviceInfo.Pairing.PairAsync();
-					connectToLuxli(deviceInfo);
-					if ( (result.Status.Equals(DevicePairingResultStatus.Paired) || result.Status.Equals(DevicePairingResultStatus.AlreadyPaired)) && deviceInfo.IsEnabled )
+					//connectToLuxli(deviceInfo);
+					if ( (result.Status.Equals(DevicePairingResultStatus.Paired) || result.Status.Equals(DevicePairingResultStatus.AlreadyPaired))) // && deviceInfo.IsEnabled )
 					{
 						connectToLuxli(deviceInfo);
 					}
-
 				}
 			});
 			BLE_deviceWatcher.Added += BLE_DeviceWatcher_EventHandler_DeviceAdded;
