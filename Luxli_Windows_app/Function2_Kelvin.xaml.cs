@@ -5,6 +5,7 @@ using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -12,6 +13,7 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using System.Threading.Tasks;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -33,15 +35,28 @@ namespace Luxli_Windows_app
 		private int stop_value;
 		private int increment_size;
 		private int brightness;
+		private System.Threading.Timer Timer_updateConnLuxlis;
 
 		public Function2_Kelvin()
 		{
 			this.InitializeComponent();
-			this.start_value = 3000;
-			this.stop_value = 10000;
-			this.Interval_s = 3;
-			this.increment_size = 200;
-			this.brightness = 10;
+			this.start_value		= 3000;		startValue_TextBox.Text			= start_value.ToString();
+			this.stop_value			= 10000;	stopValue_TextBox.Text			= stop_value.ToString();
+			this.Interval_s			=	3;			interval_s_TextBox.Text			= Interval_s.ToString();
+			this.increment_size = 200;		incrementSize_TextBox.Text	= increment_size.ToString();
+			this.brightness			= 10;			brightness_TextBox.Text			= brightness.ToString();
+			this.Timer_updateConnLuxlis = new System.Threading.Timer(updateConnectedLuxlisTextbox, null, 10, 100);
+		}
+
+		private async void updateConnectedLuxlisTextbox(object state)
+		{
+			await Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+			{
+				if (_ble_handler != null)
+				{
+					connLuxlis_TextBox.Text = _ble_handler.connected_Luxlis.Count.ToString();
+				}
+			});
 		}
 
 		protected override void OnNavigatedTo(NavigationEventArgs e)
@@ -114,6 +129,11 @@ namespace Luxli_Windows_app
 		private void brightness_TextBox_TextChanged(object sender, TextChangedEventArgs e)
 		{
 			brightness = Convert.ToInt32(brightness_TextBox.Text);
+		}
+
+		private void connLuxlis_TextBox_TextChanged(object sender, TextChangedEventArgs e)
+		{
+
 		}
 	}
 }

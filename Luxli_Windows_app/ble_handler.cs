@@ -71,10 +71,11 @@ namespace Luxli_Windows_app
 					}
 					//if its a luxli device, unpair, pair and connect 					
 
-					DeviceUnpairingResult res =  await deviceInfo.Pairing.UnpairAsync();
-					DevicePairingResult result = await deviceInfo.Pairing.PairAsync();
+					DeviceUnpairingResult unpair_result =  await deviceInfo.Pairing.UnpairAsync();
+					DevicePairingResult pair_result = await deviceInfo.Pairing.PairAsync();
 					//connectToLuxli(deviceInfo);
-					if ( (result.Status.Equals(DevicePairingResultStatus.Paired) || result.Status.Equals(DevicePairingResultStatus.AlreadyPaired))) // && deviceInfo.IsEnabled )
+					if ( (pair_result.Status.Equals(DevicePairingResultStatus.Paired) || pair_result.Status.Equals(DevicePairingResultStatus.AlreadyPaired))
+						 ) // && deviceInfo.IsEnabled )
 					{
 						connectToLuxli(deviceInfo);
 					}
@@ -84,13 +85,22 @@ namespace Luxli_Windows_app
 
 			BLE_DeviceWatcher_EventHandler_DeviceUpdated = new TypedEventHandler<DeviceWatcher, DeviceInformationUpdate>((watcher, deviceInfoUpdate) =>
 			{
-				foreach (DeviceInformation luxli_deviceInfo in discovered_luxlis)
+				int index = discovered_luxlis.FindIndex(f => f.Id == deviceInfoUpdate.Id);
+				if (index >= 0)
 				{
-					if (luxli_deviceInfo.Id == deviceInfoUpdate.Id)
-					{
-						luxli_deviceInfo.Update(deviceInfoUpdate);
-					}
+					discovered_luxlis[index].Update(deviceInfoUpdate);
 				}
+				else
+				{
+					int notSupposedtohappen = 5;
+				}
+				//foreach (DeviceInformation luxli_deviceInfo in discovered_luxlis)
+				//{
+				//	if (luxli_deviceInfo.Id == deviceInfoUpdate.Id)
+				//	{
+				//		luxli_deviceInfo.Update(deviceInfoUpdate);
+				//	}
+				//}
 			});
 			BLE_deviceWatcher.Updated += BLE_DeviceWatcher_EventHandler_DeviceUpdated;
 
@@ -99,11 +109,16 @@ namespace Luxli_Windows_app
 		
 		private async void connectToLuxli(DeviceInformation deviceInfo)
 		{
-			BluetoothLEDevice luxli_ble_device_1 = null;
 			try
 			{
-				luxli_ble_device_1 = await BluetoothLEDevice.FromIdAsync(deviceInfo.Id);
+
+				//GattDeviceService x = await GattDeviceService.FromIdAsync(deviceInfo.Id);
 				luxli_ble_device = await BluetoothLEDevice.FromIdAsync(deviceInfo.Id);
+				luxli_ble_device = await BluetoothLEDevice.FromIdAsync(deviceInfo.Id);
+			}
+			catch (Exception ex) when ((uint)ex.HResult == 0x8000000E)
+			{
+
 			}
 			catch (Exception ex) when ((uint)ex.HResult == 0x800710df)
 			{

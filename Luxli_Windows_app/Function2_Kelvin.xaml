@@ -15,6 +15,7 @@
         <TextBox x:Name="stopValue_TextBox" Header ="Stop Value" HorizontalAlignment="Left" Margin="204,0,0,0" TextWrapping="Wrap" Text="10000" VerticalAlignment="Top" TextChanged="stopValue_TextBox_TextChanged"/>
         <TextBox x:Name="incrementSize_TextBox" Header ="Increment Size" HorizontalAlignment="Left" Margin="0,65,0,0" TextWrapping="Wrap" Text="100" VerticalAlignment="Top" TextChanged="incrementSize_TextBox_TextChanged"/>
         <TextBox x:Name="brightness_TextBox" Header ="Brightness" HorizontalAlignment="Left" Margin="165,65,0,0" TextWrapping="Wrap" Text="10" VerticalAlignment="Top" TextChanged="brightness_TextBox_TextChanged"/>
+        <TextBox x:Name="connLuxlis_TextBox" Header="Connected Luxlis" HorizontalAlignment="Left" Margin="0,572,0,0" TextWrapping="Wrap" Text="5" VerticalAlignment="Top" Height="58" Width="137" TextChanged="connLuxlis_TextBox_TextChanged"/>
 
 
 
