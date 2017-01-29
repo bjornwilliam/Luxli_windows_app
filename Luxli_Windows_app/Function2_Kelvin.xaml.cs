@@ -14,6 +14,7 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using System.Threading.Tasks;
+using System.Threading;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -24,7 +25,7 @@ namespace Luxli_Windows_app
 	/// </summary>
 	public sealed partial class Function2_Kelvin : Page
 	{
-
+		CancellationTokenSource cts;
 
 		private bool sendingState;
 
@@ -77,18 +78,34 @@ namespace Luxli_Windows_app
 		{
 			if (sendingState == false)
 			{
+				cts = new CancellationTokenSource();
 				sendingState = true;
 				startStopButton.Content = "Stop";
-				sendKelvin(Interval_s, start_value, stop_value, increment_size);
+
+				try
+				{
+					sendKelvin(Interval_s, start_value, stop_value, increment_size, cts.Token);
+				}
+				catch (OperationCanceledException)
+				{
+
+					UInt32 hie = 5;
+				}
+				
 			}
 			else
 			{
 				sendingState = false;
 				startStopButton.Content = "Start";
+				if (cts != null)
+				{
+					cts.Cancel();
+				}
+
 			}
 		}
 
-		private async void sendKelvin(Int32 interval, Int32 start_value, Int32 stop_value, Int32 increment_size)
+		private async void sendKelvin(Int32 interval, Int32 start_value, Int32 stop_value, Int32 increment_size, CancellationToken ct)
 		{
 			var brightness_value = new byte[]
 			{

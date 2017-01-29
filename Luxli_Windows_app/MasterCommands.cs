@@ -79,8 +79,13 @@ namespace Luxli_Windows_app
 		/// </summary>
 		LoadEffect = 0x12,
 		/// <summary>
+		///  Set up to 5 leds, 16 bit per Led , R G B WW CW 
+		/// </summary>
+		SetLedsDirect = 0x14,
+		/// <summary>
 		/// Search for available slave units. Typically broadcast when the master does not have any slaves registered. No data is sent with this command. Slaves will respond with their UID.
 		/// </summary>
+		/// 
 		Hello = 0x80,
 		/// <summary>
 		/// Query slave name. <b>Parameters</b>: Ask for the user name and ID color of the slave unit. After receiving this command, the slave will wait 1 ms before sending back data. No data is sent with this command.

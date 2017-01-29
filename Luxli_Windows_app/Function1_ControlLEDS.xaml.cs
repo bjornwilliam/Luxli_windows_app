@@ -55,31 +55,73 @@ namespace Luxli_Windows_app
 			{
 				(byte)R_SliderVal,
 				(byte)G_SliderVal,
-				(byte)B_SliderVal
+				(byte)B_SliderVal,
+				(byte)WW_SliderVal,
+				(byte)CW_SliderVal
 			};
-			var packet = new MasterPacket(MasterCommand.SetRawRGB, led_data);
-
+			var packet = new MasterPacket(MasterCommand.SetLedsDirect, led_data);
 			_ble_handler.send_ble_luxli_packet(packet);
 		}
 
 		private void greenLedSlider_ValueChanged(object sender, RangeBaseValueChangedEventArgs e)
 		{
 
+			this.G_SliderVal = (UInt16)e.NewValue;
+			var led_data = new byte[]
+			{
+				(byte)R_SliderVal,
+				(byte)G_SliderVal,
+				(byte)B_SliderVal,
+				(byte)WW_SliderVal,
+				(byte)CW_SliderVal
+			};
+			var packet = new MasterPacket(MasterCommand.SetLedsDirect, led_data);
+			_ble_handler.send_ble_luxli_packet(packet);
 		}
 
 		private void blueLedSlider_ValueChanged(object sender, RangeBaseValueChangedEventArgs e)
 		{
-
+			this.B_SliderVal = (UInt16)e.NewValue;
+			var led_data = new byte[]
+			{
+				(byte)R_SliderVal,
+				(byte)G_SliderVal,
+				(byte)B_SliderVal,
+				(byte)WW_SliderVal,
+				(byte)CW_SliderVal
+			};
+			var packet = new MasterPacket(MasterCommand.SetLedsDirect, led_data);
+			_ble_handler.send_ble_luxli_packet(packet);
 		}
 
 		private void wwLedSlider_ValueChanged(object sender, RangeBaseValueChangedEventArgs e)
 		{
-
+			this.WW_SliderVal = (UInt16)e.NewValue;
+			var led_data = new byte[]
+			{
+				(byte)R_SliderVal,
+				(byte)G_SliderVal,
+				(byte)B_SliderVal,
+				(byte)WW_SliderVal,
+				(byte)CW_SliderVal
+			};
+			var packet = new MasterPacket(MasterCommand.SetLedsDirect, led_data);
+			_ble_handler.send_ble_luxli_packet(packet);
 		}
 
 		private void cwLedSlider_ValueChanged(object sender, RangeBaseValueChangedEventArgs e)
 		{
-
+			this.CW_SliderVal = (UInt16)e.NewValue;
+			var led_data = new byte[]
+			{
+				(byte)R_SliderVal,
+				(byte)G_SliderVal,
+				(byte)B_SliderVal,
+				(byte)WW_SliderVal,
+				(byte)CW_SliderVal
+			};
+			var packet = new MasterPacket(MasterCommand.SetLedsDirect, led_data);
+			_ble_handler.send_ble_luxli_packet(packet);
 		}
 
 		private void brightnessSlider_ValueChanged(object sender, RangeBaseValueChangedEventArgs e)
